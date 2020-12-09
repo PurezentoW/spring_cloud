@@ -1,0 +1,30 @@
+# 指定运行端口
+server:
+  port: 8762
+
+# 指定服务名称
+spring:
+  application:
+    name: spring-cloud-producer
+  datasource:
+    url: jdbc:mysql://localhost:3306/teadb?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      minimum-idle: 10 #最小空闲连接
+      maximum-pool-size: 60 #最大连接数
+      idle-timeout: 500000 #空闲连接超时时间
+      max-lifetime: 540000 #连接最大存活时间
+      connection-timeout: 6000 #连接超时时间
+      connection-test-query: SELECT 1 #用于测试连接是否可用的查询语句
+
+eureka:
+  client:
+    # 注册到Eureka的注册中心
+    register-with-eureka: true
+    # 获取注册实例列表
+    fetch-registry: true
+    service-url:
+      # 配置注册中心地址
+      defaultZone: http://root:root@localhost:8761/eureka/
