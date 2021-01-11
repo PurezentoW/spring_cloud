@@ -1,41 +1,38 @@
 server:
-  port: 8762
+  port: 8901
+
 spring:
   application:
-    name: spring-cloud-config
-  profiles:
-    active: dev   #指向(开发为dev，测试为test，生产为prod)
+    name: spring-cloud-config-server
   cloud:
     config:
-#      server:
-#        databases: true
-#  datasource:
-#    type: org.apache.tomcat.jdbc.pool.DataSource
-#    driver-class-name: com.mysql.jdbc.Driver
-#    url: jdbc:mysql://128.64.97.6:3306/icplatdb?characterEncoding=utf-8&useSSL=false
-#    url: jdbc:mysql://128.196.188.209:3306/icplatdb?characterEncoding=utf-8&useSSL=false
-#    username: ic_plat_app
-#    password: Ic_plat_app#2018
-#    tomcat:
-#      initial-size: 20
-#      max-wait: 20000
-#      max-idle: 100
-#      min-idle: 5
-#mybatis:
-#   type-aliases-package: com.ccb.ic
-#   mapper-locations: classpath:com/ccb/ic/**/*Mapper.xml
-#   config-location: classpath:com/ccb/ic/config/mybatis-config.xml
+      server:
+        git:
+          # 配置存储配置信息的Git仓库
+          uri: https://gitee.com/Purezento/spring-cloud-config.git
+          username: silencetea
+          password: Xx15859535599
+          # 开启启动时直接从git获取配置
+          clone-on-start: true
+          # 获取子目录下的配置
+#          search-paths: '{application}'
+  # rabbitmq相干配置
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
 
-#logging:
-#  config: classpath:logback-spring.xml
+# 暴露bus刷新配置的端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: 'bus-refresh'
 
----
-spring:
-  profiles: dev
 eureka:
   client:
-    serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
-  instance:
-      prefer-ip-address: true
-      instance-id: ${spring.application.name}:${spring.cloud.client.ipAddress}:${spring.application.instance_id:${server.port}}
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://root:root@localhost:8761/eureka/

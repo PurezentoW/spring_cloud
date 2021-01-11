@@ -28,10 +28,19 @@
 
     <modules>
         <module>spring-cloud-eureka</module>
-        <!--<module>spring-cloud-config</module>-->
+        <module>spring-cloud-config</module>
         <module>spring-cloud-producer</module>
         <module>spring-cloud-ribbon</module>
         <module>spring-cloud-hystrix</module>
+        <module>spring-cloud-feign</module>
+        <module>spring-cloud-zuul</module>
+        <module>spring-cloud-config-client</module>
+        <module>spring-cloud-gateway</module>
+        <module>spring-cloud-admin</module>
+        <module>spring-cloud-admin-client</module>
+        <module>spring-cloud-oauth2-server</module>
+        <module>spring-cloud-oauth2-jwt-server</module>
+        <module>spring-cloud-flow</module>
     </modules>
 
     <dependencyManagement>

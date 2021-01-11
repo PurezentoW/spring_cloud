@@ -4,5 +4,10 @@
       "name": "ribbon.ConnectTimeout",
       "type": "java.lang.String",
       "description": "Description for ribbon.ConnectTimeout."
-  }
-] }
+    },
+    {
+      "name": "service-url.user-service",
+      "type": "java.lang.String",
+      "description": "Description for service-url.user-service."
+    }
+  ] }

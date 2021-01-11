@@ -1,0 +1,23 @@
+server:
+  port: 9201
+
+service-url:
+  spring-cloud-producer: http://localhost:8762
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        # 路由的ID
+        - id: path_route
+          # 匹配后路由地址
+          uri: ${service-url.spring-cloud-producer}/user/{id}
+          predicates:
+            # 断言，路径相匹配的进行路由
+#            - Path=/user/{id}
+            -  After=2020-12-11T11:00:00+08:00[Asia/Shanghai]
+          filters:
+            - name: Hystrix
+              args:
+                name: fallbackcmd
+                fallback-uri: forward:/fallback

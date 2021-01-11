@@ -17,8 +17,6 @@ public class ForTest {
             }
         }
 
-        
-
         return String.valueOf(mark);
     }
 }

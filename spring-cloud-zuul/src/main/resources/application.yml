@@ -1,0 +1,21 @@
+server:
+  port: 8801
+
+spring:
+  application:
+    name: spring-cloud-zuul
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://root:root@localhost:8761/eureka/
+
+zuul:
+  routes:
+    # 给服务配置路由
+    spring-cloud-producer:
+      path: /userService/**
+    spring-cloud-feign:
+      path: /feignService/**
